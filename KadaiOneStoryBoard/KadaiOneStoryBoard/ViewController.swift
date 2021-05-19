@@ -22,13 +22,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         //キーボードタイプを指定
         for item in inputNumArray {
-            item.keyboardType = UIKeyboardType.numberPad
+            item.keyboardType = .numberPad
         }
     }
     @IBAction func actionButton(_ sender: Any) {
         //map, filter, reduceを使用して0以外のものを全て足す処理
         let sum = inputNumArray
-            .map({ Int($0.text ?? "") ?? 0 }).filter({ $0 != 0 }).reduce(0, +)
+            .map({ Int($0.text ?? "") ?? 0 }).reduce(0, +)
         //string型にしてlabelに渡します
         sumLabel.text = String(sum)
         //好みで初期化
