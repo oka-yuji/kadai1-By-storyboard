@@ -16,25 +16,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var inputNumFieldFive: UITextField!
     //合計値を出力するラベル
     @IBOutlet private weak var sumLabel: UILabel!
+    //TextFieldを全て配列に入れます
+    private var inputNumArray: [UITextField] {[inputNumFieldOne, inputNumFieldTwo, inputNumFieldThree, inputNumFieldFour, inputNumFieldFive]}
     override func viewDidLoad() {
         super.viewDidLoad()
-        //入力したデータは一旦全て配列に入れます
-        let inputNumArray: [UITextField] = [inputNumFieldOne, inputNumFieldTwo, inputNumFieldThree, inputNumFieldFour, inputNumFieldFive]
         //キーボードタイプを指定
         for item in inputNumArray {
             item.keyboardType = UIKeyboardType.numberPad
         }
     }
     @IBAction func actionButton(_ sender: Any) {
-        //入力したデータは一旦全て配列に入れます
-        let inputNumArray: [UITextField] = [inputNumFieldOne, inputNumFieldTwo, inputNumFieldThree, inputNumFieldFour, inputNumFieldFive]
         //map, filter, reduceを使用して0以外のものを全て足す処理
         let sum = inputNumArray
             .map({ Int($0.text ?? "") ?? 0 }).filter({ $0 != 0 }).reduce(0, +)
-        
         //string型にしてlabelに渡します
         sumLabel.text = String(sum)
-        
         //好みで初期化
         for item in inputNumArray {
             item.text = ""
